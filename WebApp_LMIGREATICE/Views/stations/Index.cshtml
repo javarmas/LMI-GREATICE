@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebApp_LMIGREATICE.Models.station>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center">List of stations</h2>
+<p>
+    @Html.ActionLink("Add station", "Create", "stations", new { @class = "btn btn-default wine-button" })
+</p>
+
+<table class="table">
+    <thead class="head-table">
+        <tr>
+            @*<th>@Html.DisplayNameFor(model => model.idStation)</th>*@
+            <th>@Html.DisplayNameFor(model => model.nameStation)</th>
+            <th>@Html.DisplayNameFor(model => model.latitudeStation)</th>
+            <th>@Html.DisplayNameFor(model => model.longitudeStation)</th>
+            <th>@Html.DisplayNameFor(model => model.altitudeStation)</th>
+            <th>@Html.DisplayNameFor(model => model.idGlacier)</th>
+            <th>@Html.DisplayNameFor(model => model.idLocation)</th>
+            <th>@Html.DisplayNameFor(model => model.idMeasurementType)</th>
+            <th>@Html.DisplayNameFor(model => model.stateR)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>@Html.DisplayFor(modelItem => item.idStation)</td>*@
+                <td>@Html.ActionLink(item.nameStation,"Edit", new { id= item.idStation},new { @class = "a-wine"})</td>
+                <td>@Html.DisplayFor(modelItem => item.latitudeStation)</td>
+                <td>@Html.DisplayFor(modelItem => item.longitudeStation)</td>
+                <td>@Html.DisplayFor(modelItem => item.altitudeStation)</td>
+                <td>@Html.DisplayFor(modelItem => item.glacier.nameGlacier)</td>
+                <td>@Html.DisplayFor(modelItem => item.location.nameLocation)</td>
+                <td>@Html.DisplayFor(modelItem => item.measurementType.nameMT)</td>
+                <td>@Html.DisplayFor(modelItem => item.stateR)</td>
+                <td>
+                    <a href="@Url.Action("Delete", "stations",new { id = item.idStation})" onclick="return confirm('Are you sure you want to delete this?');"><img src="@Url.Content("~/Content/images/trash.png")" style="width:20px;height:auto;"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <link rel="shortcut icon" type="image/jpg" href="~/Content/images/ico.jpg" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+          integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+          crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+            integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+            crossorigin=""></script>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/customize.js"></script>
+</head>
+<body>
+    <div class="container-fluid navbar-fixed-top">
+        <div class="row">
+            <div class="col-sm-3 col-lg-2" style="height:100%; padding:0px">
+                <div class="navbar navbar-inverse">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            @Html.ActionLink("LMI GREAT ICE", "Search", "enteredData", new { area = "" }, new { @class = "navbar-brand", @style = "color:#ffffff" })
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav" style="display:inline-block">
+                                @if (Session["activeSession"] != null && ((bool)Session["activeSession"]) == true)
+                                {
+                                    if (((int)Session["idUserPrivilege"]) == 1)
+                                    {
+                                        <li><a href="@Url.Action("Index", "systemUsers")" style="color:#ffffff"><img src="@Url.Content("~/Content/images/users.png")" style="width:25px;height:auto;">  Users</a></li>
+                                        <li><a href="@Url.Action("Index", "mountains")" style="color:#ffffff"><img src="@Url.Content("~/Content/images/mountain.png")" style="width:25px;height:auto;">  Mountains</a></li>
+                                        <li><a href="@Url.Action("Index", "glaciers")" style="color:#ffffff"><img src="@Url.Content("~/Content/images/glacier.png")" style="width:25px;height:auto;">  Glacier</a></li>
+                                        <li><a href="@Url.Action("Index", "stations")" style="color:#ffffff"><img src="@Url.Content("~/Content/images/station.png")" style="width:25px;height:auto;">  Stations</a></li>
+                                        <li><a href="@Url.Action("Index", "institutions")" style="color:#ffffff"><img src="@Url.Content("~/Content/images/institution.png")" style="width:25px;height:auto;">  Institutions</a></li>
+                                        <li><a href="@Url.Action("Index", "projectCountries")" style="color:#ffffff"><img src="@Url.Content("~/Content/images/country.png")" style="width:25px;height:auto;">  Countries</a></li>
+                                        <li><a href="@Url.Action("Index", "enteredData")" style="color:#ffffff"><img src="@Url.Content("~/Content/images/upload.png")" style="width:25px;height:auto;">  Data</a></li>
+                                    }
+                                    if (((int)Session["idUserPrivilege"]) == 2)
+                                    {
+                                        <li><a href="@Url.Action("Index", "enteredData")" style="color:#ffffff"><img src="@Url.Content("~/Content/images/upload.png")" style="width:25px;height:auto;">  Data</a></li>
+                                    }
+
+                                    <li>@Html.ActionLink((String)Session["name"], "UserDashBoard", "systemUsers", null, htmlAttributes: new { id = "loginLink", @style = "color:#ffffff" })</li>
+                                    <li>@Html.ActionLink("Search Data", "Search", "enteredData", null, htmlAttributes: new { @style = "color:#ffffff" })</li>
+                                    <li>@Html.ActionLink("Sign Out", "Logout", "systemUsers", null, htmlAttributes: new { @style = "color:#ffffff" })</li>
+                                }
+                            </ul>
+                            @*Html.Partial("_LoginPartial")*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9 col-lg-10" style="overflow-y: scroll; height:1000px ">
+                <div class="container-fluid">
+                    <img src="~/Content/images/imagenFinal.jpg" style="height:100px; width:100%; background-size:cover" />
+                    <div class="container-inside">
+                        @if (Session["error"] != null && Session["error"].ToString() != "")
+                        {
+                            <div id="messageError" class="alert alert-danger" role="alert">
+                                <h4>Error!</h4>
+                                <p>@Session["error"].ToString()</p>
+                            </div>
+                        }
+                        @if (Session["message"] != null && Session["message"].ToString() != "")
+                        {
+                            <div id="message" class="alert alert-success" role="alert">
+                                <p>@Session["message"].ToString()</p>
+                            </div>
+                        }
+                        @if (Session["notification"] != null && Session["notification"].ToString() != "")
+                        {
+                            <div id="messageNotification" class="alert alert-warning" role="alert">
+                                <p>@Session["notification"].ToString()</p>
+                            </div>
+                        }
+                        <br />
+                        @RenderBody()
+                        <hr />
+                        <footer class="navbar-fixed-bottom">
+                            <p>&copy; This system has been developed by Javier Armas Navarrete (javier.armasnav@gmail.com) as part of his final engineering project. All rights reserved. LMI GREAT ICE @DateTime.Now.Year</p>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

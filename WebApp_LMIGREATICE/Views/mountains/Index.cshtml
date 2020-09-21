@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebApp_LMIGREATICE.Models.mountain>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2 class="text-center">List of mountains</h2>
+<p>
+    @Html.ActionLink("Add mountain", "Create", "mountains", new { @class = "btn btn-default wine-button" })
+</p>
+
+<table class="table">
+    <thead class="head-table">
+        <tr>
+            @*<th>@Html.DisplayNameFor(model => model.idMountain)</th>*@
+            <th>@Html.DisplayNameFor(model => model.nameMountain)</th>
+            <th>@Html.DisplayNameFor(model => model.idProjectCountry)</th>
+            <th>@Html.DisplayNameFor(model => model.stateR)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>@Html.DisplayFor(modelItem => item.idMountain)</td>*@
+                <td>@Html.ActionLink(item.nameMountain,"Edit", new { id = item.idMountain }, new { @class = "a-wine" })</td>
+                <td>@Html.DisplayFor(modelItem => item.projectCountry.nameCountry)</td>
+                <td>@Html.DisplayFor(modelItem => item.stateR)</td>
+                <td>
+                    <a href="@Url.Action("Delete", "mountains",new { id = item.idMountain})" onclick="return confirm('Are you sure you want to delete this?');"><img src="@Url.Content("~/Content/images/trash.png")" style="width:20px;height:auto;"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,109 @@
+﻿@model WebApp_LMIGREATICE.Models.systemUser
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="text-center">User details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.passwordU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.passwordU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateOfBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateOfBirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.country.nameCountry)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.country.nameCountry)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gender.nameGender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gender.nameGender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.institution.nameInstitution)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.institution.nameInstitution)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.title.nameTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title.nameTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userPrivilege.namePrivilege)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userPrivilege.namePrivilege)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userState.nameState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userState.nameState)
+        </dd>
+
+    </dl>
+</div>
+<p class="text-center">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idSystemUser }, new { @class = "btn btn-default wine-button" })
+    @Html.ActionLink("Back to List", "Index",null, new { @class = "btn btn-default wine-border-button" })
+</p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

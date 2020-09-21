@@ -1,0 +1,123 @@
+﻿@model IEnumerable<WebApp_LMIGREATICE.Models.FilteredData>
+
+@{
+    ViewBag.Title = "ShowResults";
+    Layout = "~/Views/Shared/_Banner_Layout.cshtml";
+}
+
+<h2 class="text-center">Search Results</h2>
+
+<div class="row">
+    <div class="col-sm-6 col-lg-6">
+        <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'info')" id="defaultOpen">Station info</button>
+            @*<button class="tablinks" onclick="openCity(event, 'searched')">Searched info</button>*@
+            <button class="tablinks" onclick="openCity(event, 'data')">Data</button>
+        </div>
+        @*<div id="searched" class="tabcontent">
+            @{ WebApp_LMIGREATICE.Models.Extension.EnteredDataExt search = (WebApp_LMIGREATICE.Models.Extension.EnteredDataExt)Session["SearchedInfo"]; }
+            @Html.Label("Country", htmlAttributes: new { @class = "control-label col-md-4" }):  @Html.Label(@search.station.glacier.mountain.projectCountry.nameCountry.ToString(), new { htmlAttributes = new { @class = "form-control" } }) <br />
+            @Html.Label("Mountain", htmlAttributes: new { @class = "control-label col-md-4" }):  @Html.Label(@search.station.glacier.mountain.nameMountain.ToString(), new { htmlAttributes = new { @class = "form-control" } })<br />
+            @Html.Label("Glacier", htmlAttributes: new { @class = "control-label col-md-4" }):  @Html.Label(@search.station.glacier.nameGlacier.ToString(), new { htmlAttributes = new { @class = "form-control" } })<br />
+            @Html.Label("Data Type", htmlAttributes: new { @class = "control-label col-md-4" }):  @Html.Label(@search.dataType.nameDataType.ToString(), new { htmlAttributes = new { @class = "form-control" } })<br />
+            @Html.Label("Measurement Type", htmlAttributes: new { @class = "control-label col-md-4" }):  @Html.Label(@search.station.measurementType.nameMT.ToString(), new { htmlAttributes = new { @class = "form-control" } })<br />
+            @Html.Label("Station", htmlAttributes: new { @class = "control-label col-md-4" }):  @Html.Label(@search.station.nameStation.ToString(), new { htmlAttributes = new { @class = "form-control" } })<br />
+            @Html.Label("Variable", htmlAttributes: new { @class = "control-label col-md-4" }):  @Html.Label(@search.variable.ToString(), new { htmlAttributes = new { @class = "form-control" } })<br />
+            @Html.Label("Year", htmlAttributes: new { @class = "control-label col-md-4" }):  @Html.Label(@search.year.ToString(), new { htmlAttributes = new { @class = "form-control" } })<br />
+            @Html.Label("Altitudinal Bar", htmlAttributes: new { @class = "control-label col-md-4" }):  @Html.Label(@search.altitudinalBar.ToString(), new { htmlAttributes = new { @class = "form-control" } })<br />
+        </div>*@
+
+        <div id="info" class="tabcontent">
+            @{ WebApp_LMIGREATICE.Models.station stat = (WebApp_LMIGREATICE.Models.station)Session["stationInfo"]; }
+            @Html.Label("Name", htmlAttributes: new { @class = "control-label col-md-4" }):  @Html.Label(@stat.nameStation, new { htmlAttributes = new { @class = "form-control" } }) <br />
+            @Html.Label("Latitude", htmlAttributes: new { @class = "control-label col-md-4" }):  @Html.Label(@stat.latitudeStation.ToString(), new { htmlAttributes = new { @class = "form-control" } })<br />
+            @Html.Label("Longitude", htmlAttributes: new { @class = "control-label col-md-4" }):  @Html.Label(@stat.longitudeStation.ToString(), new { htmlAttributes = new { @class = "form-control" } })<br />
+            @Html.Label("Altitude", htmlAttributes: new { @class = "control-label col-md-4" }):  @Html.Label(@stat.altitudeStation.ToString(), new { htmlAttributes = new { @class = "form-control" } })<br />
+            @Html.Label("Glacier", htmlAttributes: new { @class = "control-label col-md-4" }):  @Html.Label(@stat.glacier.nameGlacier, new { htmlAttributes = new { @class = "form-control" } })<br />
+            @Html.Label("Location", htmlAttributes: new { @class = "control-label col-md-4" }):  @Html.Label(@stat.location.nameLocation, new { htmlAttributes = new { @class = "form-control" } })<br />
+            @Html.Label("Measurement Type", htmlAttributes: new { @class = "control-label col-md-4" }):  @Html.Label(@stat.measurementType.nameMT, new { htmlAttributes = new { @class = "form-control" } })<br />
+        </div>
+
+        <div id="data" class="tabcontent" style="height: 400px; overflow-y:scroll" >
+            <table class="table" >
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayName("Date")</th>
+                        <th>@Html.DisplayName("Value")</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.key1)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Key2)</td>
+                        </tr>
+                    }
+                </tbody>
+               
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-6">
+
+        @using (Html.BeginForm("exportCSV", "EnteredData", FormMethod.Post))
+        {
+            if (Session["activeSession"] != null && ((bool)Session["activeSession"]) == true)
+            {
+                <input type="submit" value="Download Data" class="btn btn-default wine-button  navbar-right"/>
+            }
+            else
+            {
+                Session["notification"] = "For downoloading data please Login";
+            }
+        }
+
+        <img src="~/Content/images/hola.jpeg" />
+        @*@using (Html.BeginForm("exportCSV", "EnteredData", FormMethod.Post))
+        {
+            <input type="submit" value="Download" />
+        }*@
+        @*<div>
+            <img src="@Url.Action("generateGraphics")" alt="Chart" />
+        </div>*@
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(function () {
+                document.getElementById("defaultOpen").click();
+            });
+        });
+
+        function openCity(evt, cityName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+    </script>
+}
+
+
+

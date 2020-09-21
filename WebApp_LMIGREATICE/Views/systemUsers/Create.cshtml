@@ -1,0 +1,153 @@
+﻿@model WebApp_LMIGREATICE.Models.systemUser
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2 class="text-center">Add new user</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.firstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.lastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.lastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.passwordU, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.passwordU, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.passwordU, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.idGender, "Gender", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @if (ViewBag.genders != null)
+                    {
+                        @Html.DropDownListFor(model => model.idGender, ViewBag.genders as SelectList, "--Select Gender--", htmlAttributes: new { @class = "form-control" })
+                    }
+                    @Html.ValidationMessageFor(model => model.idGender, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.idTitle, "Title", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @if (ViewBag.titles != null)
+                    {
+                        @Html.DropDownListFor(model => model.idTitle, ViewBag.titles as SelectList, "--Select Title--", htmlAttributes: new { @class = "form-control" })
+                    }
+                    @Html.ValidationMessageFor(model => model.idTitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.dateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.dateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.dateOfBirth, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.idCountry, "Country", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @if (ViewBag.countries != null)
+                    {
+                        @Html.DropDownListFor(model => model.idCountry, ViewBag.countries as SelectList, "--Select Country--", htmlAttributes: new { @class = "form-control" })
+                    }
+                    @Html.ValidationMessageFor(model => model.idCountry, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.idInstitution, "Institution", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @if (ViewBag.institutions != null)
+                    {
+                        @Html.DropDownListFor(model => model.idInstitution, ViewBag.institutions as SelectList, "--Select Institution--", htmlAttributes: new { @class = "form-control" })
+                    }
+                    @Html.ValidationMessageFor(model => model.idInstitution, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (Session["idUserPrivilege"] != null && Session["idUserPrivilege"].ToString() != "")
+    {
+        if ((int)Session["idUserPrivilege"] == 1)
+        {
+            <div class="form-group">
+                    @Html.LabelFor(model => model.idUserPrivilege, "Privilege", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.idUserPrivilege, ViewBag.userPrivileges as SelectList, "--Select Privilege--", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.idUserPrivilege, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            <div class="form-group">
+                    @Html.LabelFor(model => model.idUserState, "State", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.idUserState, ViewBag.userStates as SelectList, "--Select State--", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.idUserState, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+        }
+    }
+
+
+    <div class="form-group text-center">
+        <div class="col-md-12 col-md-12">
+            <input type="submit" value="Add" class="btn btn-default wine-button" />
+            @if (Session["activeSession"] != null && Session["activeSession"].ToString() != "")
+            {
+                if ((bool)Session["activeSession"] == true)
+                {
+                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default wine-border-button" })
+                }
+                else
+                {
+                    @Html.ActionLink("Go to Login", "Login", null, new { @class = "btn btn-default wine-border-button" })
+                }
+            }
+            else
+            {
+                @Html.ActionLink("Go to Login", "Login", null, new { @class = "btn btn-default wine-border-button" })
+            }
+
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

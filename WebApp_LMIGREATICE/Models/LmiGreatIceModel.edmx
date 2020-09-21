@@ -1,0 +1,1874 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB_LMIGREATICEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="idCountry" />
+          </Key>
+          <Property Name="idCountry" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameCountry" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="countries_iso_code" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="countries_isd_code" Type="varchar" MaxLength="7" />
+        </EntityType>
+        <EntityType Name="dataType">
+          <Key>
+            <PropertyRef Name="idDataType" />
+          </Key>
+          <Property Name="idDataType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameDataType" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="stateR" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="enteredData">
+          <Key>
+            <PropertyRef Name="idEnteredData" />
+          </Key>
+          <Property Name="idEnteredData" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameEnteredData" Type="varchar(max)" Nullable="false" />
+          <Property Name="startDate" Type="datetime" Nullable="false" />
+          <Property Name="endDate" Type="datetime" Nullable="false" />
+          <Property Name="idDataType" Type="int" Nullable="false" />
+          <Property Name="idStation" Type="int" Nullable="false" />
+          <Property Name="idSystemUser" Type="int" Nullable="false" />
+          <Property Name="stateR" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="gender">
+          <Key>
+            <PropertyRef Name="idGender" />
+          </Key>
+          <Property Name="idGender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameGender" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="glacier">
+          <Key>
+            <PropertyRef Name="idGlacier" />
+          </Key>
+          <Property Name="idGlacier" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameGlacier" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="idMountain" Type="int" Nullable="false" />
+          <Property Name="stateR" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="glaciologicalData">
+          <Key>
+            <PropertyRef Name="idMassBalanceData" />
+          </Key>
+          <Property Name="idMassBalanceData" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="altitudinalBar" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="startDay" Type="int" Nullable="false" />
+          <Property Name="startMonth" Type="int" Nullable="false" />
+          <Property Name="startYear" Type="int" Nullable="false" />
+          <Property Name="endDay" Type="int" Nullable="false" />
+          <Property Name="endMonth" Type="int" Nullable="false" />
+          <Property Name="endYear" Type="int" Nullable="false" />
+          <Property Name="latitude" Type="float" Nullable="false" />
+          <Property Name="longitude" Type="float" Nullable="false" />
+          <Property Name="altitude" Type="float" Nullable="false" />
+          <Property Name="massBalance" Type="float" Nullable="false" />
+          <Property Name="monthData" Type="int" Nullable="false" />
+          <Property Name="idEnteredData" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="hydrologicalData">
+          <Key>
+            <PropertyRef Name="idHydrologicalData" />
+          </Key>
+          <Property Name="idHydrologicalData" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dateData" Type="datetime" Nullable="false" />
+          <Property Name="flow_Q(l/s)" Type="float" Nullable="false" />
+          <Property Name="h(cm)" Type="float" Nullable="false" />
+          <Property Name="idEnteredData" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="institution">
+          <Key>
+            <PropertyRef Name="idInstitution" />
+          </Key>
+          <Property Name="idInstitution" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameInstitution" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="location">
+          <Key>
+            <PropertyRef Name="idLocation" />
+          </Key>
+          <Property Name="idLocation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameLocation" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="measurementType">
+          <Key>
+            <PropertyRef Name="idMeasurementType" />
+          </Key>
+          <Property Name="idMeasurementType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameMT" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="stateR" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="metadata">
+          <Key>
+            <PropertyRef Name="idMetaData" />
+          </Key>
+          <Property Name="idMetaData" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="variable_code" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="variable_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="sensor_manufacturer" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="sensor_model" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="unit" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="dataQuality" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="idEnteredData" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="meteorologicalData">
+          <Key>
+            <PropertyRef Name="idMeteorologicalData" />
+          </Key>
+          <Property Name="idMeteorologicalData" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dateData" Type="datetime" Nullable="false" />
+          <Property Name="inShortWaveRadiation" Type="float" Nullable="false" />
+          <Property Name="outShortWaveRadiation" Type="float" Nullable="false" />
+          <Property Name="albedo" Type="float" Nullable="false" />
+          <Property Name="inLongWaveRadiation" Type="float" />
+          <Property Name="outLongWaveRadiation" Type="float" />
+          <Property Name="relativeHumidity" Type="float" Nullable="false" />
+          <Property Name="ventilatedAirTemperature" Type="float" Nullable="false" />
+          <Property Name="nonVentilatedAirTemperature" Type="float" />
+          <Property Name="windSpeed" Type="float" Nullable="false" />
+          <Property Name="windDirection" Type="float" Nullable="false" />
+          <Property Name="precipitationAmount" Type="float" />
+          <Property Name="precipitationRate" Type="float" />
+          <Property Name="distanceSensor_Snow" Type="float" />
+          <Property Name="snowDepth" Type="float" />
+          <Property Name="groundFlux" Type="float" />
+          <Property Name="groundTemp_3cm" Type="float" />
+          <Property Name="groundTemp_10cm" Type="float" />
+          <Property Name="groundTemp_30cm" Type="float" />
+          <Property Name="idEnteredData" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mountain">
+          <Key>
+            <PropertyRef Name="idMountain" />
+          </Key>
+          <Property Name="idMountain" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameMountain" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="idProjectCountry" Type="int" Nullable="false" />
+          <Property Name="stateR" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="projectCountry">
+          <Key>
+            <PropertyRef Name="idProjectCountry" />
+          </Key>
+          <Property Name="idProjectCountry" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameCountry" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="station">
+          <Key>
+            <PropertyRef Name="idStation" />
+          </Key>
+          <Property Name="idStation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameStation" Type="varchar(max)" Nullable="false" />
+          <Property Name="idLocation" Type="int" Nullable="false" />
+          <Property Name="latitudeStation" Type="float" Nullable="false" />
+          <Property Name="longitudeStation" Type="float" Nullable="false" />
+          <Property Name="altitudeStation" Type="float" Nullable="false" />
+          <Property Name="idGlacier" Type="int" Nullable="false" />
+          <Property Name="idMeasurementType" Type="int" Nullable="false" />
+          <Property Name="stateR" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="systemUser">
+          <Key>
+            <PropertyRef Name="idSystemUser" />
+          </Key>
+          <Property Name="idSystemUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstName" Type="varchar(max)" Nullable="false" />
+          <Property Name="lastName" Type="varchar(max)" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="passwordU" Type="varchar(max)" Nullable="false" />
+          <Property Name="idGender" Type="int" Nullable="false" />
+          <Property Name="idTitle" Type="int" Nullable="false" />
+          <Property Name="dateOfBirth" Type="date" Nullable="false" />
+          <Property Name="idCountry" Type="int" Nullable="false" />
+          <Property Name="idInstitution" Type="int" Nullable="false" />
+          <Property Name="idUserPrivilege" Type="int" Nullable="false" />
+          <Property Name="idUserState" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="title">
+          <Key>
+            <PropertyRef Name="idTitle" />
+          </Key>
+          <Property Name="idTitle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameTitle" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="userPrivilege">
+          <Key>
+            <PropertyRef Name="idUserPrivilege" />
+          </Key>
+          <Property Name="idUserPrivilege" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="namePrivilege" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="stateR" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="userState">
+          <Key>
+            <PropertyRef Name="idUserState" />
+          </Key>
+          <Property Name="idUserState" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameState" Type="varchar" MaxLength="12" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AggregatedCounter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Key" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Value" Type="bigint" Nullable="false" />
+          <Property Name="ExpireAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Counter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Key" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Value" Type="smallint" Nullable="false" />
+          <Property Name="ExpireAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Hash">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Key" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Field" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" />
+          <Property Name="ExpireAt" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="StateName" Type="nvarchar" MaxLength="20" />
+          <Property Name="InvocationData" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Arguments" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="ExpireAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="JobParameter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="JobQueue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobId" Type="int" Nullable="false" />
+          <Property Name="Queue" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FetchedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="List">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Key" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" />
+          <Property Name="ExpireAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Schema">
+          <Key>
+            <PropertyRef Name="Version" />
+          </Key>
+          <Property Name="Version" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Server">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Data" Type="nvarchar(max)" />
+          <Property Name="LastHeartbeat" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Set">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Key" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Score" Type="float" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="ExpireAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="Data" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK__enteredDa__idDat__56B3DD81">
+          <End Role="dataType" Type="Self.dataType" Multiplicity="1" />
+          <End Role="enteredData" Type="Self.enteredData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dataType">
+              <PropertyRef Name="idDataType" />
+            </Principal>
+            <Dependent Role="enteredData">
+              <PropertyRef Name="idDataType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__enteredDa__idSta__57A801BA">
+          <End Role="station" Type="Self.station" Multiplicity="1" />
+          <End Role="enteredData" Type="Self.enteredData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="station">
+              <PropertyRef Name="idStation" />
+            </Principal>
+            <Dependent Role="enteredData">
+              <PropertyRef Name="idStation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__enteredDa__idSys__589C25F3">
+          <End Role="systemUser" Type="Self.systemUser" Multiplicity="1" />
+          <End Role="enteredData" Type="Self.enteredData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="systemUser">
+              <PropertyRef Name="idSystemUser" />
+            </Principal>
+            <Dependent Role="enteredData">
+              <PropertyRef Name="idSystemUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__glacier__idMount__42E1EEFE">
+          <End Role="mountain" Type="Self.mountain" Multiplicity="1" />
+          <End Role="glacier" Type="Self.glacier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mountain">
+              <PropertyRef Name="idMountain" />
+            </Principal>
+            <Dependent Role="glacier">
+              <PropertyRef Name="idMountain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__glaciolog__idEnt__61316BF4">
+          <End Role="enteredData" Type="Self.enteredData" Multiplicity="1" />
+          <End Role="glaciologicalData" Type="Self.glaciologicalData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="enteredData">
+              <PropertyRef Name="idEnteredData" />
+            </Principal>
+            <Dependent Role="glaciologicalData">
+              <PropertyRef Name="idEnteredData" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__hydrologi__idEnt__7DCDAAA2">
+          <End Role="enteredData" Type="Self.enteredData" Multiplicity="1" />
+          <End Role="hydrologicalData" Type="Self.hydrologicalData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="enteredData">
+              <PropertyRef Name="idEnteredData" />
+            </Principal>
+            <Dependent Role="hydrologicalData">
+              <PropertyRef Name="idEnteredData" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__metadata__idEnte__5E54FF49">
+          <End Role="enteredData" Type="Self.enteredData" Multiplicity="1" />
+          <End Role="metadata" Type="Self.metadata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="enteredData">
+              <PropertyRef Name="idEnteredData" />
+            </Principal>
+            <Dependent Role="metadata">
+              <PropertyRef Name="idEnteredData" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__meteorolo__idEnt__5B78929E">
+          <End Role="enteredData" Type="Self.enteredData" Multiplicity="1" />
+          <End Role="meteorologicalData" Type="Self.meteorologicalData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="enteredData">
+              <PropertyRef Name="idEnteredData" />
+            </Principal>
+            <Dependent Role="meteorologicalData">
+              <PropertyRef Name="idEnteredData" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mountain__stateR__3F115E1A">
+          <End Role="projectCountry" Type="Self.projectCountry" Multiplicity="1" />
+          <End Role="mountain" Type="Self.mountain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="projectCountry">
+              <PropertyRef Name="idProjectCountry" />
+            </Principal>
+            <Dependent Role="mountain">
+              <PropertyRef Name="idProjectCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__station__idGlaci__5E8A0973">
+          <End Role="glacier" Type="Self.glacier" Multiplicity="1" />
+          <End Role="station" Type="Self.station" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="glacier">
+              <PropertyRef Name="idGlacier" />
+            </Principal>
+            <Dependent Role="station">
+              <PropertyRef Name="idGlacier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__station__idLocat__5D95E53A">
+          <End Role="location" Type="Self.location" Multiplicity="1" />
+          <End Role="station" Type="Self.station" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="location">
+              <PropertyRef Name="idLocation" />
+            </Principal>
+            <Dependent Role="station">
+              <PropertyRef Name="idLocation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__station__idMeasu__5F7E2DAC">
+          <End Role="measurementType" Type="Self.measurementType" Multiplicity="1" />
+          <End Role="station" Type="Self.station" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="measurementType">
+              <PropertyRef Name="idMeasurementType" />
+            </Principal>
+            <Dependent Role="station">
+              <PropertyRef Name="idMeasurementType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__systemUse__idCou__336AA144">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="systemUser" Type="Self.systemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="idCountry" />
+            </Principal>
+            <Dependent Role="systemUser">
+              <PropertyRef Name="idCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__systemUse__idGen__318258D2">
+          <End Role="gender" Type="Self.gender" Multiplicity="1" />
+          <End Role="systemUser" Type="Self.systemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gender">
+              <PropertyRef Name="idGender" />
+            </Principal>
+            <Dependent Role="systemUser">
+              <PropertyRef Name="idGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__systemUse__idIns__345EC57D">
+          <End Role="institution" Type="Self.institution" Multiplicity="1" />
+          <End Role="systemUser" Type="Self.systemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="institution">
+              <PropertyRef Name="idInstitution" />
+            </Principal>
+            <Dependent Role="systemUser">
+              <PropertyRef Name="idInstitution" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__systemUse__idTit__32767D0B">
+          <End Role="title" Type="Self.title" Multiplicity="1" />
+          <End Role="systemUser" Type="Self.systemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="title">
+              <PropertyRef Name="idTitle" />
+            </Principal>
+            <Dependent Role="systemUser">
+              <PropertyRef Name="idTitle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__systemUse__idUse__3552E9B6">
+          <End Role="userPrivilege" Type="Self.userPrivilege" Multiplicity="1" />
+          <End Role="systemUser" Type="Self.systemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="userPrivilege">
+              <PropertyRef Name="idUserPrivilege" />
+            </Principal>
+            <Dependent Role="systemUser">
+              <PropertyRef Name="idUserPrivilege" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__systemUse__idUse__36470DEF">
+          <End Role="userState" Type="Self.userState" Multiplicity="1" />
+          <End Role="systemUser" Type="Self.systemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="userState">
+              <PropertyRef Name="idUserState" />
+            </Principal>
+            <Dependent Role="systemUser">
+              <PropertyRef Name="idUserState" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HangFire_JobParameter_Job">
+          <End Role="Job" Type="Self.Job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="JobParameter" Type="Self.JobParameter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobParameter">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HangFire_State_Job">
+          <End Role="Job" Type="Self.Job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="State" Type="Self.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="DB_LMIGREATICEModelStoreContainer">
+          <EntitySet Name="country" EntityType="Self.country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dataType" EntityType="Self.dataType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="enteredData" EntityType="Self.enteredData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gender" EntityType="Self.gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="glacier" EntityType="Self.glacier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="glaciologicalData" EntityType="Self.glaciologicalData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hydrologicalData" EntityType="Self.hydrologicalData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="institution" EntityType="Self.institution" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="location" EntityType="Self.location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="measurementType" EntityType="Self.measurementType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="metadata" EntityType="Self.metadata" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="meteorologicalData" EntityType="Self.meteorologicalData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mountain" EntityType="Self.mountain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="projectCountry" EntityType="Self.projectCountry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="station" EntityType="Self.station" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="systemUser" EntityType="Self.systemUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="title" EntityType="Self.title" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="userPrivilege" EntityType="Self.userPrivilege" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="userState" EntityType="Self.userState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AggregatedCounter" EntityType="Self.AggregatedCounter" Schema="HangFire" store:Type="Tables" />
+          <EntitySet Name="Counter" EntityType="Self.Counter" Schema="HangFire" store:Type="Tables" />
+          <EntitySet Name="Hash" EntityType="Self.Hash" Schema="HangFire" store:Type="Tables" />
+          <EntitySet Name="Job" EntityType="Self.Job" Schema="HangFire" store:Type="Tables" />
+          <EntitySet Name="JobParameter" EntityType="Self.JobParameter" Schema="HangFire" store:Type="Tables" />
+          <EntitySet Name="JobQueue" EntityType="Self.JobQueue" Schema="HangFire" store:Type="Tables" />
+          <EntitySet Name="List" EntityType="Self.List" Schema="HangFire" store:Type="Tables" />
+          <EntitySet Name="Schema" EntityType="Self.Schema" Schema="HangFire" store:Type="Tables" />
+          <EntitySet Name="Server" EntityType="Self.Server" Schema="HangFire" store:Type="Tables" />
+          <EntitySet Name="Set" EntityType="Self.Set" Schema="HangFire" store:Type="Tables" />
+          <EntitySet Name="State" EntityType="Self.State" Schema="HangFire" store:Type="Tables" />
+          <AssociationSet Name="FK__enteredDa__idDat__56B3DD81" Association="Self.FK__enteredDa__idDat__56B3DD81">
+            <End Role="dataType" EntitySet="dataType" />
+            <End Role="enteredData" EntitySet="enteredData" />
+          </AssociationSet>
+          <AssociationSet Name="FK__enteredDa__idSta__57A801BA" Association="Self.FK__enteredDa__idSta__57A801BA">
+            <End Role="station" EntitySet="station" />
+            <End Role="enteredData" EntitySet="enteredData" />
+          </AssociationSet>
+          <AssociationSet Name="FK__enteredDa__idSys__589C25F3" Association="Self.FK__enteredDa__idSys__589C25F3">
+            <End Role="systemUser" EntitySet="systemUser" />
+            <End Role="enteredData" EntitySet="enteredData" />
+          </AssociationSet>
+          <AssociationSet Name="FK__glacier__idMount__42E1EEFE" Association="Self.FK__glacier__idMount__42E1EEFE">
+            <End Role="mountain" EntitySet="mountain" />
+            <End Role="glacier" EntitySet="glacier" />
+          </AssociationSet>
+          <AssociationSet Name="FK__glaciolog__idEnt__61316BF4" Association="Self.FK__glaciolog__idEnt__61316BF4">
+            <End Role="enteredData" EntitySet="enteredData" />
+            <End Role="glaciologicalData" EntitySet="glaciologicalData" />
+          </AssociationSet>
+          <AssociationSet Name="FK__hydrologi__idEnt__7DCDAAA2" Association="Self.FK__hydrologi__idEnt__7DCDAAA2">
+            <End Role="enteredData" EntitySet="enteredData" />
+            <End Role="hydrologicalData" EntitySet="hydrologicalData" />
+          </AssociationSet>
+          <AssociationSet Name="FK__metadata__idEnte__5E54FF49" Association="Self.FK__metadata__idEnte__5E54FF49">
+            <End Role="enteredData" EntitySet="enteredData" />
+            <End Role="metadata" EntitySet="metadata" />
+          </AssociationSet>
+          <AssociationSet Name="FK__meteorolo__idEnt__5B78929E" Association="Self.FK__meteorolo__idEnt__5B78929E">
+            <End Role="enteredData" EntitySet="enteredData" />
+            <End Role="meteorologicalData" EntitySet="meteorologicalData" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mountain__stateR__3F115E1A" Association="Self.FK__mountain__stateR__3F115E1A">
+            <End Role="projectCountry" EntitySet="projectCountry" />
+            <End Role="mountain" EntitySet="mountain" />
+          </AssociationSet>
+          <AssociationSet Name="FK__station__idGlaci__5E8A0973" Association="Self.FK__station__idGlaci__5E8A0973">
+            <End Role="glacier" EntitySet="glacier" />
+            <End Role="station" EntitySet="station" />
+          </AssociationSet>
+          <AssociationSet Name="FK__station__idLocat__5D95E53A" Association="Self.FK__station__idLocat__5D95E53A">
+            <End Role="location" EntitySet="location" />
+            <End Role="station" EntitySet="station" />
+          </AssociationSet>
+          <AssociationSet Name="FK__station__idMeasu__5F7E2DAC" Association="Self.FK__station__idMeasu__5F7E2DAC">
+            <End Role="measurementType" EntitySet="measurementType" />
+            <End Role="station" EntitySet="station" />
+          </AssociationSet>
+          <AssociationSet Name="FK__systemUse__idCou__336AA144" Association="Self.FK__systemUse__idCou__336AA144">
+            <End Role="country" EntitySet="country" />
+            <End Role="systemUser" EntitySet="systemUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__systemUse__idGen__318258D2" Association="Self.FK__systemUse__idGen__318258D2">
+            <End Role="gender" EntitySet="gender" />
+            <End Role="systemUser" EntitySet="systemUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__systemUse__idIns__345EC57D" Association="Self.FK__systemUse__idIns__345EC57D">
+            <End Role="institution" EntitySet="institution" />
+            <End Role="systemUser" EntitySet="systemUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__systemUse__idTit__32767D0B" Association="Self.FK__systemUse__idTit__32767D0B">
+            <End Role="title" EntitySet="title" />
+            <End Role="systemUser" EntitySet="systemUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__systemUse__idUse__3552E9B6" Association="Self.FK__systemUse__idUse__3552E9B6">
+            <End Role="userPrivilege" EntitySet="userPrivilege" />
+            <End Role="systemUser" EntitySet="systemUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__systemUse__idUse__36470DEF" Association="Self.FK__systemUse__idUse__36470DEF">
+            <End Role="userState" EntitySet="userState" />
+            <End Role="systemUser" EntitySet="systemUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HangFire_JobParameter_Job" Association="Self.FK_HangFire_JobParameter_Job">
+            <End Role="Job" EntitySet="Job" />
+            <End Role="JobParameter" EntitySet="JobParameter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HangFire_State_Job" Association="Self.FK_HangFire_State_Job">
+            <End Role="Job" EntitySet="Job" />
+            <End Role="State" EntitySet="State" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_LMIGREATICEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="idCountry" />
+          </Key>
+          <Property Name="idCountry" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameCountry" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="countries_iso_code" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="countries_isd_code" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="systemUsers" Relationship="Self.FK__systemUse__idCou__336AA144" FromRole="country" ToRole="systemUser" />
+        </EntityType>
+        <EntityType Name="dataType">
+          <Key>
+            <PropertyRef Name="idDataType" />
+          </Key>
+          <Property Name="idDataType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameDataType" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="stateR" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="enteredDatas" Relationship="Self.FK__enteredDa__idDat__56B3DD81" FromRole="dataType" ToRole="enteredData" />
+        </EntityType>
+        <EntityType Name="enteredData">
+          <Key>
+            <PropertyRef Name="idEnteredData" />
+          </Key>
+          <Property Name="idEnteredData" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameEnteredData" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="endDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idDataType" Type="Int32" Nullable="false" />
+          <Property Name="idStation" Type="Int32" Nullable="false" />
+          <Property Name="idSystemUser" Type="Int32" Nullable="false" />
+          <Property Name="stateR" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="dataType" Relationship="Self.FK__enteredDa__idDat__56B3DD81" FromRole="enteredData" ToRole="dataType" />
+          <NavigationProperty Name="station" Relationship="Self.FK__enteredDa__idSta__57A801BA" FromRole="enteredData" ToRole="station" />
+          <NavigationProperty Name="systemUser" Relationship="Self.FK__enteredDa__idSys__589C25F3" FromRole="enteredData" ToRole="systemUser" />
+          <NavigationProperty Name="glaciologicalDatas" Relationship="Self.FK__glaciolog__idEnt__61316BF4" FromRole="enteredData" ToRole="glaciologicalData" />
+          <NavigationProperty Name="hydrologicalDatas" Relationship="Self.FK__hydrologi__idEnt__7DCDAAA2" FromRole="enteredData" ToRole="hydrologicalData" />
+          <NavigationProperty Name="metadatas" Relationship="Self.FK__metadata__idEnte__5E54FF49" FromRole="enteredData" ToRole="metadata" />
+          <NavigationProperty Name="meteorologicalDatas" Relationship="Self.FK__meteorolo__idEnt__5B78929E" FromRole="enteredData" ToRole="meteorologicalData" />
+        </EntityType>
+        <EntityType Name="gender">
+          <Key>
+            <PropertyRef Name="idGender" />
+          </Key>
+          <Property Name="idGender" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameGender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="systemUsers" Relationship="Self.FK__systemUse__idGen__318258D2" FromRole="gender" ToRole="systemUser" />
+        </EntityType>
+        <EntityType Name="glacier">
+          <Key>
+            <PropertyRef Name="idGlacier" />
+          </Key>
+          <Property Name="idGlacier" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameGlacier" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idMountain" Type="Int32" Nullable="false" />
+          <Property Name="stateR" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="mountain" Relationship="Self.FK__glacier__idMount__42E1EEFE" FromRole="glacier" ToRole="mountain" />
+          <NavigationProperty Name="stations" Relationship="Self.FK__station__idGlaci__5E8A0973" FromRole="glacier" ToRole="station" />
+        </EntityType>
+        <EntityType Name="glaciologicalData">
+          <Key>
+            <PropertyRef Name="idMassBalanceData" />
+          </Key>
+          <Property Name="idMassBalanceData" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="altitudinalBar" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="startDay" Type="Int32" Nullable="false" />
+          <Property Name="startMonth" Type="Int32" Nullable="false" />
+          <Property Name="startYear" Type="Int32" Nullable="false" />
+          <Property Name="endDay" Type="Int32" Nullable="false" />
+          <Property Name="endMonth" Type="Int32" Nullable="false" />
+          <Property Name="endYear" Type="Int32" Nullable="false" />
+          <Property Name="latitude" Type="Double" Nullable="false" />
+          <Property Name="longitude" Type="Double" Nullable="false" />
+          <Property Name="altitude" Type="Double" Nullable="false" />
+          <Property Name="massBalance" Type="Double" Nullable="false" />
+          <Property Name="monthData" Type="Int32" Nullable="false" />
+          <Property Name="idEnteredData" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="enteredData" Relationship="Self.FK__glaciolog__idEnt__61316BF4" FromRole="glaciologicalData" ToRole="enteredData" />
+        </EntityType>
+        <EntityType Name="hydrologicalData">
+          <Key>
+            <PropertyRef Name="idHydrologicalData" />
+          </Key>
+          <Property Name="idHydrologicalData" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dateData" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="flow_Q_l_s_" Type="Double" Nullable="false" />
+          <Property Name="h_cm_" Type="Double" Nullable="false" />
+          <Property Name="idEnteredData" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="enteredData" Relationship="Self.FK__hydrologi__idEnt__7DCDAAA2" FromRole="hydrologicalData" ToRole="enteredData" />
+        </EntityType>
+        <EntityType Name="institution">
+          <Key>
+            <PropertyRef Name="idInstitution" />
+          </Key>
+          <Property Name="idInstitution" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameInstitution" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="systemUsers" Relationship="Self.FK__systemUse__idIns__345EC57D" FromRole="institution" ToRole="systemUser" />
+        </EntityType>
+        <EntityType Name="location">
+          <Key>
+            <PropertyRef Name="idLocation" />
+          </Key>
+          <Property Name="idLocation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameLocation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="stations" Relationship="Self.FK__station__idLocat__5D95E53A" FromRole="location" ToRole="station" />
+        </EntityType>
+        <EntityType Name="measurementType">
+          <Key>
+            <PropertyRef Name="idMeasurementType" />
+          </Key>
+          <Property Name="idMeasurementType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameMT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="stateR" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="stations" Relationship="Self.FK__station__idMeasu__5F7E2DAC" FromRole="measurementType" ToRole="station" />
+        </EntityType>
+        <EntityType Name="metadata">
+          <Key>
+            <PropertyRef Name="idMetaData" />
+          </Key>
+          <Property Name="idMetaData" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="variable_code" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="variable_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sensor_manufacturer" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sensor_model" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="unit" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dataQuality" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idEnteredData" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="enteredData" Relationship="Self.FK__metadata__idEnte__5E54FF49" FromRole="metadata" ToRole="enteredData" />
+        </EntityType>
+        <EntityType Name="meteorologicalData">
+          <Key>
+            <PropertyRef Name="idMeteorologicalData" />
+          </Key>
+          <Property Name="idMeteorologicalData" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dateData" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="inShortWaveRadiation" Type="Double" Nullable="false" />
+          <Property Name="outShortWaveRadiation" Type="Double" Nullable="false" />
+          <Property Name="albedo" Type="Double" Nullable="false" />
+          <Property Name="inLongWaveRadiation" Type="Double" />
+          <Property Name="outLongWaveRadiation" Type="Double" />
+          <Property Name="relativeHumidity" Type="Double" Nullable="false" />
+          <Property Name="ventilatedAirTemperature" Type="Double" Nullable="false" />
+          <Property Name="nonVentilatedAirTemperature" Type="Double" />
+          <Property Name="windSpeed" Type="Double" Nullable="false" />
+          <Property Name="windDirection" Type="Double" Nullable="false" />
+          <Property Name="precipitationAmount" Type="Double" />
+          <Property Name="precipitationRate" Type="Double" />
+          <Property Name="distanceSensor_Snow" Type="Double" />
+          <Property Name="snowDepth" Type="Double" />
+          <Property Name="groundFlux" Type="Double" />
+          <Property Name="groundTemp_3cm" Type="Double" />
+          <Property Name="groundTemp_10cm" Type="Double" />
+          <Property Name="groundTemp_30cm" Type="Double" />
+          <Property Name="idEnteredData" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="enteredData" Relationship="Self.FK__meteorolo__idEnt__5B78929E" FromRole="meteorologicalData" ToRole="enteredData" />
+        </EntityType>
+        <EntityType Name="mountain">
+          <Key>
+            <PropertyRef Name="idMountain" />
+          </Key>
+          <Property Name="idMountain" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameMountain" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idProjectCountry" Type="Int32" Nullable="false" />
+          <Property Name="stateR" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="glaciers" Relationship="Self.FK__glacier__idMount__42E1EEFE" FromRole="mountain" ToRole="glacier" />
+          <NavigationProperty Name="projectCountry" Relationship="Self.FK__mountain__stateR__3F115E1A" FromRole="mountain" ToRole="projectCountry" />
+        </EntityType>
+        <EntityType Name="projectCountry">
+          <Key>
+            <PropertyRef Name="idProjectCountry" />
+          </Key>
+          <Property Name="idProjectCountry" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="mountains" Relationship="Self.FK__mountain__stateR__3F115E1A" FromRole="projectCountry" ToRole="mountain" />
+        </EntityType>
+        <EntityType Name="station">
+          <Key>
+            <PropertyRef Name="idStation" />
+          </Key>
+          <Property Name="idStation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameStation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idLocation" Type="Int32" Nullable="false" />
+          <Property Name="latitudeStation" Type="Double" Nullable="false" />
+          <Property Name="longitudeStation" Type="Double" Nullable="false" />
+          <Property Name="altitudeStation" Type="Double" Nullable="false" />
+          <Property Name="idGlacier" Type="Int32" Nullable="false" />
+          <Property Name="idMeasurementType" Type="Int32" Nullable="false" />
+          <Property Name="stateR" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="enteredDatas" Relationship="Self.FK__enteredDa__idSta__57A801BA" FromRole="station" ToRole="enteredData" />
+          <NavigationProperty Name="glacier" Relationship="Self.FK__station__idGlaci__5E8A0973" FromRole="station" ToRole="glacier" />
+          <NavigationProperty Name="location" Relationship="Self.FK__station__idLocat__5D95E53A" FromRole="station" ToRole="location" />
+          <NavigationProperty Name="measurementType" Relationship="Self.FK__station__idMeasu__5F7E2DAC" FromRole="station" ToRole="measurementType" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="systemUser">
+          <Key>
+            <PropertyRef Name="idSystemUser" />
+          </Key>
+          <Property Name="idSystemUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="passwordU" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idGender" Type="Int32" Nullable="false" />
+          <Property Name="idTitle" Type="Int32" Nullable="false" />
+          <Property Name="dateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="idCountry" Type="Int32" Nullable="false" />
+          <Property Name="idInstitution" Type="Int32" Nullable="false" />
+          <Property Name="idUserPrivilege" Type="Int32" Nullable="false" />
+          <Property Name="idUserState" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="country" Relationship="Self.FK__systemUse__idCou__336AA144" FromRole="systemUser" ToRole="country" />
+          <NavigationProperty Name="enteredDatas" Relationship="Self.FK__enteredDa__idSys__589C25F3" FromRole="systemUser" ToRole="enteredData" />
+          <NavigationProperty Name="gender" Relationship="Self.FK__systemUse__idGen__318258D2" FromRole="systemUser" ToRole="gender" />
+          <NavigationProperty Name="institution" Relationship="Self.FK__systemUse__idIns__345EC57D" FromRole="systemUser" ToRole="institution" />
+          <NavigationProperty Name="title" Relationship="Self.FK__systemUse__idTit__32767D0B" FromRole="systemUser" ToRole="title" />
+          <NavigationProperty Name="userPrivilege" Relationship="Self.FK__systemUse__idUse__3552E9B6" FromRole="systemUser" ToRole="userPrivilege" />
+          <NavigationProperty Name="userState" Relationship="Self.FK__systemUse__idUse__36470DEF" FromRole="systemUser" ToRole="userState" />
+        </EntityType>
+        <EntityType Name="title">
+          <Key>
+            <PropertyRef Name="idTitle" />
+          </Key>
+          <Property Name="idTitle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameTitle" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="systemUsers" Relationship="Self.FK__systemUse__idTit__32767D0B" FromRole="title" ToRole="systemUser" />
+        </EntityType>
+        <EntityType Name="userPrivilege">
+          <Key>
+            <PropertyRef Name="idUserPrivilege" />
+          </Key>
+          <Property Name="idUserPrivilege" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="namePrivilege" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="stateR" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="systemUsers" Relationship="Self.FK__systemUse__idUse__3552E9B6" FromRole="userPrivilege" ToRole="systemUser" />
+        </EntityType>
+        <EntityType Name="userState">
+          <Key>
+            <PropertyRef Name="idUserState" />
+          </Key>
+          <Property Name="idUserState" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameState" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="systemUsers" Relationship="Self.FK__systemUse__idUse__36470DEF" FromRole="userState" ToRole="systemUser" />
+        </EntityType>
+        <EntityType Name="AggregatedCounter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="Int64" Nullable="false" />
+          <Property Name="ExpireAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Counter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="Int16" Nullable="false" />
+          <Property Name="ExpireAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Hash">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Field" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExpireAt" Type="DateTime" Precision="7" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="StateName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="InvocationData" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Arguments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExpireAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="JobParameters" Relationship="Self.FK_HangFire_JobParameter_Job" FromRole="Job" ToRole="JobParameter" />
+          <NavigationProperty Name="States" Relationship="Self.FK_HangFire_State_Job" FromRole="Job" ToRole="State" />
+        </EntityType>
+        <EntityType Name="JobParameter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Job" Relationship="Self.FK_HangFire_JobParameter_Job" FromRole="JobParameter" ToRole="Job" />
+        </EntityType>
+        <EntityType Name="JobQueue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobId" Type="Int32" Nullable="false" />
+          <Property Name="Queue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FetchedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="List">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExpireAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Schema">
+          <Key>
+            <PropertyRef Name="Version" />
+          </Key>
+          <Property Name="Version" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Server">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastHeartbeat" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Set">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Score" Type="Double" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExpireAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Reason" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Job" Relationship="Self.FK_HangFire_State_Job" FromRole="State" ToRole="Job" />
+        </EntityType>
+        <Association Name="FK__systemUse__idCou__336AA144">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="systemUser" Type="Self.systemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="idCountry" />
+            </Principal>
+            <Dependent Role="systemUser">
+              <PropertyRef Name="idCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__enteredDa__idDat__56B3DD81">
+          <End Role="dataType" Type="Self.dataType" Multiplicity="1" />
+          <End Role="enteredData" Type="Self.enteredData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dataType">
+              <PropertyRef Name="idDataType" />
+            </Principal>
+            <Dependent Role="enteredData">
+              <PropertyRef Name="idDataType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__enteredDa__idSta__57A801BA">
+          <End Role="station" Type="Self.station" Multiplicity="1" />
+          <End Role="enteredData" Type="Self.enteredData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="station">
+              <PropertyRef Name="idStation" />
+            </Principal>
+            <Dependent Role="enteredData">
+              <PropertyRef Name="idStation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__enteredDa__idSys__589C25F3">
+          <End Role="systemUser" Type="Self.systemUser" Multiplicity="1" />
+          <End Role="enteredData" Type="Self.enteredData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="systemUser">
+              <PropertyRef Name="idSystemUser" />
+            </Principal>
+            <Dependent Role="enteredData">
+              <PropertyRef Name="idSystemUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__glaciolog__idEnt__61316BF4">
+          <End Role="enteredData" Type="Self.enteredData" Multiplicity="1" />
+          <End Role="glaciologicalData" Type="Self.glaciologicalData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="enteredData">
+              <PropertyRef Name="idEnteredData" />
+            </Principal>
+            <Dependent Role="glaciologicalData">
+              <PropertyRef Name="idEnteredData" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__hydrologi__idEnt__7DCDAAA2">
+          <End Role="enteredData" Type="Self.enteredData" Multiplicity="1" />
+          <End Role="hydrologicalData" Type="Self.hydrologicalData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="enteredData">
+              <PropertyRef Name="idEnteredData" />
+            </Principal>
+            <Dependent Role="hydrologicalData">
+              <PropertyRef Name="idEnteredData" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__metadata__idEnte__5E54FF49">
+          <End Role="enteredData" Type="Self.enteredData" Multiplicity="1" />
+          <End Role="metadata" Type="Self.metadata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="enteredData">
+              <PropertyRef Name="idEnteredData" />
+            </Principal>
+            <Dependent Role="metadata">
+              <PropertyRef Name="idEnteredData" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__meteorolo__idEnt__5B78929E">
+          <End Role="enteredData" Type="Self.enteredData" Multiplicity="1" />
+          <End Role="meteorologicalData" Type="Self.meteorologicalData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="enteredData">
+              <PropertyRef Name="idEnteredData" />
+            </Principal>
+            <Dependent Role="meteorologicalData">
+              <PropertyRef Name="idEnteredData" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__systemUse__idGen__318258D2">
+          <End Role="gender" Type="Self.gender" Multiplicity="1" />
+          <End Role="systemUser" Type="Self.systemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gender">
+              <PropertyRef Name="idGender" />
+            </Principal>
+            <Dependent Role="systemUser">
+              <PropertyRef Name="idGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__glacier__idMount__42E1EEFE">
+          <End Role="mountain" Type="Self.mountain" Multiplicity="1" />
+          <End Role="glacier" Type="Self.glacier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mountain">
+              <PropertyRef Name="idMountain" />
+            </Principal>
+            <Dependent Role="glacier">
+              <PropertyRef Name="idMountain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__station__idGlaci__5E8A0973">
+          <End Role="glacier" Type="Self.glacier" Multiplicity="1" />
+          <End Role="station" Type="Self.station" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="glacier">
+              <PropertyRef Name="idGlacier" />
+            </Principal>
+            <Dependent Role="station">
+              <PropertyRef Name="idGlacier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__systemUse__idIns__345EC57D">
+          <End Role="institution" Type="Self.institution" Multiplicity="1" />
+          <End Role="systemUser" Type="Self.systemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="institution">
+              <PropertyRef Name="idInstitution" />
+            </Principal>
+            <Dependent Role="systemUser">
+              <PropertyRef Name="idInstitution" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__station__idLocat__5D95E53A">
+          <End Role="location" Type="Self.location" Multiplicity="1" />
+          <End Role="station" Type="Self.station" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="location">
+              <PropertyRef Name="idLocation" />
+            </Principal>
+            <Dependent Role="station">
+              <PropertyRef Name="idLocation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__station__idMeasu__5F7E2DAC">
+          <End Role="measurementType" Type="Self.measurementType" Multiplicity="1" />
+          <End Role="station" Type="Self.station" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="measurementType">
+              <PropertyRef Name="idMeasurementType" />
+            </Principal>
+            <Dependent Role="station">
+              <PropertyRef Name="idMeasurementType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mountain__stateR__3F115E1A">
+          <End Role="projectCountry" Type="Self.projectCountry" Multiplicity="1" />
+          <End Role="mountain" Type="Self.mountain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="projectCountry">
+              <PropertyRef Name="idProjectCountry" />
+            </Principal>
+            <Dependent Role="mountain">
+              <PropertyRef Name="idProjectCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__systemUse__idTit__32767D0B">
+          <End Role="title" Type="Self.title" Multiplicity="1" />
+          <End Role="systemUser" Type="Self.systemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="title">
+              <PropertyRef Name="idTitle" />
+            </Principal>
+            <Dependent Role="systemUser">
+              <PropertyRef Name="idTitle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__systemUse__idUse__3552E9B6">
+          <End Role="userPrivilege" Type="Self.userPrivilege" Multiplicity="1" />
+          <End Role="systemUser" Type="Self.systemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="userPrivilege">
+              <PropertyRef Name="idUserPrivilege" />
+            </Principal>
+            <Dependent Role="systemUser">
+              <PropertyRef Name="idUserPrivilege" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__systemUse__idUse__36470DEF">
+          <End Role="userState" Type="Self.userState" Multiplicity="1" />
+          <End Role="systemUser" Type="Self.systemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="userState">
+              <PropertyRef Name="idUserState" />
+            </Principal>
+            <Dependent Role="systemUser">
+              <PropertyRef Name="idUserState" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HangFire_JobParameter_Job">
+          <End Role="Job" Type="Self.Job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="JobParameter" Type="Self.JobParameter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobParameter">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HangFire_State_Job">
+          <End Role="Job" Type="Self.Job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="State" Type="Self.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_LMIGREATICEEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="countries" EntityType="Self.country" />
+          <EntitySet Name="dataTypes" EntityType="Self.dataType" />
+          <EntitySet Name="enteredDatas" EntityType="Self.enteredData" />
+          <EntitySet Name="genders" EntityType="Self.gender" />
+          <EntitySet Name="glaciers" EntityType="Self.glacier" />
+          <EntitySet Name="glaciologicalDatas" EntityType="Self.glaciologicalData" />
+          <EntitySet Name="hydrologicalDatas" EntityType="Self.hydrologicalData" />
+          <EntitySet Name="institutions" EntityType="Self.institution" />
+          <EntitySet Name="locations" EntityType="Self.location" />
+          <EntitySet Name="measurementTypes" EntityType="Self.measurementType" />
+          <EntitySet Name="metadatas" EntityType="Self.metadata" />
+          <EntitySet Name="meteorologicalDatas" EntityType="Self.meteorologicalData" />
+          <EntitySet Name="mountains" EntityType="Self.mountain" />
+          <EntitySet Name="projectCountries" EntityType="Self.projectCountry" />
+          <EntitySet Name="stations" EntityType="Self.station" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="systemUsers" EntityType="Self.systemUser" />
+          <EntitySet Name="titles" EntityType="Self.title" />
+          <EntitySet Name="userPrivileges" EntityType="Self.userPrivilege" />
+          <EntitySet Name="userStates" EntityType="Self.userState" />
+          <EntitySet Name="AggregatedCounters" EntityType="Self.AggregatedCounter" />
+          <EntitySet Name="Counters" EntityType="Self.Counter" />
+          <EntitySet Name="Hashes" EntityType="Self.Hash" />
+          <EntitySet Name="Jobs" EntityType="Self.Job" />
+          <EntitySet Name="JobParameters" EntityType="Self.JobParameter" />
+          <EntitySet Name="JobQueues" EntityType="Self.JobQueue" />
+          <EntitySet Name="Lists" EntityType="Self.List" />
+          <EntitySet Name="Schemata" EntityType="Self.Schema" />
+          <EntitySet Name="Servers" EntityType="Self.Server" />
+          <EntitySet Name="Sets" EntityType="Self.Set" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <AssociationSet Name="FK__systemUse__idCou__336AA144" Association="Self.FK__systemUse__idCou__336AA144">
+            <End Role="country" EntitySet="countries" />
+            <End Role="systemUser" EntitySet="systemUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__enteredDa__idDat__56B3DD81" Association="Self.FK__enteredDa__idDat__56B3DD81">
+            <End Role="dataType" EntitySet="dataTypes" />
+            <End Role="enteredData" EntitySet="enteredDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__enteredDa__idSta__57A801BA" Association="Self.FK__enteredDa__idSta__57A801BA">
+            <End Role="station" EntitySet="stations" />
+            <End Role="enteredData" EntitySet="enteredDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__enteredDa__idSys__589C25F3" Association="Self.FK__enteredDa__idSys__589C25F3">
+            <End Role="systemUser" EntitySet="systemUsers" />
+            <End Role="enteredData" EntitySet="enteredDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__glaciolog__idEnt__61316BF4" Association="Self.FK__glaciolog__idEnt__61316BF4">
+            <End Role="enteredData" EntitySet="enteredDatas" />
+            <End Role="glaciologicalData" EntitySet="glaciologicalDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__hydrologi__idEnt__7DCDAAA2" Association="Self.FK__hydrologi__idEnt__7DCDAAA2">
+            <End Role="enteredData" EntitySet="enteredDatas" />
+            <End Role="hydrologicalData" EntitySet="hydrologicalDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__metadata__idEnte__5E54FF49" Association="Self.FK__metadata__idEnte__5E54FF49">
+            <End Role="enteredData" EntitySet="enteredDatas" />
+            <End Role="metadata" EntitySet="metadatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__meteorolo__idEnt__5B78929E" Association="Self.FK__meteorolo__idEnt__5B78929E">
+            <End Role="enteredData" EntitySet="enteredDatas" />
+            <End Role="meteorologicalData" EntitySet="meteorologicalDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__systemUse__idGen__318258D2" Association="Self.FK__systemUse__idGen__318258D2">
+            <End Role="gender" EntitySet="genders" />
+            <End Role="systemUser" EntitySet="systemUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__glacier__idMount__42E1EEFE" Association="Self.FK__glacier__idMount__42E1EEFE">
+            <End Role="mountain" EntitySet="mountains" />
+            <End Role="glacier" EntitySet="glaciers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__station__idGlaci__5E8A0973" Association="Self.FK__station__idGlaci__5E8A0973">
+            <End Role="glacier" EntitySet="glaciers" />
+            <End Role="station" EntitySet="stations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__systemUse__idIns__345EC57D" Association="Self.FK__systemUse__idIns__345EC57D">
+            <End Role="institution" EntitySet="institutions" />
+            <End Role="systemUser" EntitySet="systemUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__station__idLocat__5D95E53A" Association="Self.FK__station__idLocat__5D95E53A">
+            <End Role="location" EntitySet="locations" />
+            <End Role="station" EntitySet="stations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__station__idMeasu__5F7E2DAC" Association="Self.FK__station__idMeasu__5F7E2DAC">
+            <End Role="measurementType" EntitySet="measurementTypes" />
+            <End Role="station" EntitySet="stations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mountain__stateR__3F115E1A" Association="Self.FK__mountain__stateR__3F115E1A">
+            <End Role="projectCountry" EntitySet="projectCountries" />
+            <End Role="mountain" EntitySet="mountains" />
+          </AssociationSet>
+          <AssociationSet Name="FK__systemUse__idTit__32767D0B" Association="Self.FK__systemUse__idTit__32767D0B">
+            <End Role="title" EntitySet="titles" />
+            <End Role="systemUser" EntitySet="systemUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__systemUse__idUse__3552E9B6" Association="Self.FK__systemUse__idUse__3552E9B6">
+            <End Role="userPrivilege" EntitySet="userPrivileges" />
+            <End Role="systemUser" EntitySet="systemUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__systemUse__idUse__36470DEF" Association="Self.FK__systemUse__idUse__36470DEF">
+            <End Role="userState" EntitySet="userStates" />
+            <End Role="systemUser" EntitySet="systemUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HangFire_JobParameter_Job" Association="Self.FK_HangFire_JobParameter_Job">
+            <End Role="Job" EntitySet="Jobs" />
+            <End Role="JobParameter" EntitySet="JobParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HangFire_State_Job" Association="Self.FK_HangFire_State_Job">
+            <End Role="Job" EntitySet="Jobs" />
+            <End Role="State" EntitySet="States" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DB_LMIGREATICEModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DB_LMIGREATICEModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_LMIGREATICEModelStoreContainer" CdmEntityContainer="DB_LMIGREATICEEntities1">
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="idCountry" ColumnName="idCountry" />
+                <ScalarProperty Name="nameCountry" ColumnName="nameCountry" />
+                <ScalarProperty Name="countries_iso_code" ColumnName="countries_iso_code" />
+                <ScalarProperty Name="countries_isd_code" ColumnName="countries_isd_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dataTypes">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.dataType">
+              <MappingFragment StoreEntitySet="dataType">
+                <ScalarProperty Name="idDataType" ColumnName="idDataType" />
+                <ScalarProperty Name="nameDataType" ColumnName="nameDataType" />
+                <ScalarProperty Name="stateR" ColumnName="stateR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="enteredDatas">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.enteredData">
+              <MappingFragment StoreEntitySet="enteredData">
+                <ScalarProperty Name="idEnteredData" ColumnName="idEnteredData" />
+                <ScalarProperty Name="nameEnteredData" ColumnName="nameEnteredData" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="idDataType" ColumnName="idDataType" />
+                <ScalarProperty Name="idStation" ColumnName="idStation" />
+                <ScalarProperty Name="idSystemUser" ColumnName="idSystemUser" />
+                <ScalarProperty Name="stateR" ColumnName="stateR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="genders">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.gender">
+              <MappingFragment StoreEntitySet="gender">
+                <ScalarProperty Name="idGender" ColumnName="idGender" />
+                <ScalarProperty Name="nameGender" ColumnName="nameGender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="glaciers">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.glacier">
+              <MappingFragment StoreEntitySet="glacier">
+                <ScalarProperty Name="idGlacier" ColumnName="idGlacier" />
+                <ScalarProperty Name="nameGlacier" ColumnName="nameGlacier" />
+                <ScalarProperty Name="idMountain" ColumnName="idMountain" />
+                <ScalarProperty Name="stateR" ColumnName="stateR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="glaciologicalDatas">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.glaciologicalData">
+              <MappingFragment StoreEntitySet="glaciologicalData">
+                <ScalarProperty Name="idMassBalanceData" ColumnName="idMassBalanceData" />
+                <ScalarProperty Name="altitudinalBar" ColumnName="altitudinalBar" />
+                <ScalarProperty Name="startDay" ColumnName="startDay" />
+                <ScalarProperty Name="startMonth" ColumnName="startMonth" />
+                <ScalarProperty Name="startYear" ColumnName="startYear" />
+                <ScalarProperty Name="endDay" ColumnName="endDay" />
+                <ScalarProperty Name="endMonth" ColumnName="endMonth" />
+                <ScalarProperty Name="endYear" ColumnName="endYear" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="altitude" ColumnName="altitude" />
+                <ScalarProperty Name="massBalance" ColumnName="massBalance" />
+                <ScalarProperty Name="monthData" ColumnName="monthData" />
+                <ScalarProperty Name="idEnteredData" ColumnName="idEnteredData" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hydrologicalDatas">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.hydrologicalData">
+              <MappingFragment StoreEntitySet="hydrologicalData">
+                <ScalarProperty Name="idHydrologicalData" ColumnName="idHydrologicalData" />
+                <ScalarProperty Name="dateData" ColumnName="dateData" />
+                <ScalarProperty Name="flow_Q_l_s_" ColumnName="flow_Q(l/s)" />
+                <ScalarProperty Name="h_cm_" ColumnName="h(cm)" />
+                <ScalarProperty Name="idEnteredData" ColumnName="idEnteredData" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="institutions">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.institution">
+              <MappingFragment StoreEntitySet="institution">
+                <ScalarProperty Name="idInstitution" ColumnName="idInstitution" />
+                <ScalarProperty Name="nameInstitution" ColumnName="nameInstitution" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="locations">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.location">
+              <MappingFragment StoreEntitySet="location">
+                <ScalarProperty Name="idLocation" ColumnName="idLocation" />
+                <ScalarProperty Name="nameLocation" ColumnName="nameLocation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="measurementTypes">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.measurementType">
+              <MappingFragment StoreEntitySet="measurementType">
+                <ScalarProperty Name="idMeasurementType" ColumnName="idMeasurementType" />
+                <ScalarProperty Name="nameMT" ColumnName="nameMT" />
+                <ScalarProperty Name="stateR" ColumnName="stateR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="metadatas">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.metadata">
+              <MappingFragment StoreEntitySet="metadata">
+                <ScalarProperty Name="idMetaData" ColumnName="idMetaData" />
+                <ScalarProperty Name="variable_code" ColumnName="variable_code" />
+                <ScalarProperty Name="variable_name" ColumnName="variable_name" />
+                <ScalarProperty Name="sensor_manufacturer" ColumnName="sensor_manufacturer" />
+                <ScalarProperty Name="sensor_model" ColumnName="sensor_model" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="dataQuality" ColumnName="dataQuality" />
+                <ScalarProperty Name="idEnteredData" ColumnName="idEnteredData" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="meteorologicalDatas">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.meteorologicalData">
+              <MappingFragment StoreEntitySet="meteorologicalData">
+                <ScalarProperty Name="idMeteorologicalData" ColumnName="idMeteorologicalData" />
+                <ScalarProperty Name="dateData" ColumnName="dateData" />
+                <ScalarProperty Name="inShortWaveRadiation" ColumnName="inShortWaveRadiation" />
+                <ScalarProperty Name="outShortWaveRadiation" ColumnName="outShortWaveRadiation" />
+                <ScalarProperty Name="albedo" ColumnName="albedo" />
+                <ScalarProperty Name="inLongWaveRadiation" ColumnName="inLongWaveRadiation" />
+                <ScalarProperty Name="outLongWaveRadiation" ColumnName="outLongWaveRadiation" />
+                <ScalarProperty Name="relativeHumidity" ColumnName="relativeHumidity" />
+                <ScalarProperty Name="ventilatedAirTemperature" ColumnName="ventilatedAirTemperature" />
+                <ScalarProperty Name="nonVentilatedAirTemperature" ColumnName="nonVentilatedAirTemperature" />
+                <ScalarProperty Name="windSpeed" ColumnName="windSpeed" />
+                <ScalarProperty Name="windDirection" ColumnName="windDirection" />
+                <ScalarProperty Name="precipitationAmount" ColumnName="precipitationAmount" />
+                <ScalarProperty Name="precipitationRate" ColumnName="precipitationRate" />
+                <ScalarProperty Name="distanceSensor_Snow" ColumnName="distanceSensor_Snow" />
+                <ScalarProperty Name="snowDepth" ColumnName="snowDepth" />
+                <ScalarProperty Name="groundFlux" ColumnName="groundFlux" />
+                <ScalarProperty Name="groundTemp_3cm" ColumnName="groundTemp_3cm" />
+                <ScalarProperty Name="groundTemp_10cm" ColumnName="groundTemp_10cm" />
+                <ScalarProperty Name="groundTemp_30cm" ColumnName="groundTemp_30cm" />
+                <ScalarProperty Name="idEnteredData" ColumnName="idEnteredData" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mountains">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.mountain">
+              <MappingFragment StoreEntitySet="mountain">
+                <ScalarProperty Name="idMountain" ColumnName="idMountain" />
+                <ScalarProperty Name="nameMountain" ColumnName="nameMountain" />
+                <ScalarProperty Name="idProjectCountry" ColumnName="idProjectCountry" />
+                <ScalarProperty Name="stateR" ColumnName="stateR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="projectCountries">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.projectCountry">
+              <MappingFragment StoreEntitySet="projectCountry">
+                <ScalarProperty Name="idProjectCountry" ColumnName="idProjectCountry" />
+                <ScalarProperty Name="nameCountry" ColumnName="nameCountry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stations">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.station">
+              <MappingFragment StoreEntitySet="station">
+                <ScalarProperty Name="idStation" ColumnName="idStation" />
+                <ScalarProperty Name="nameStation" ColumnName="nameStation" />
+                <ScalarProperty Name="idLocation" ColumnName="idLocation" />
+                <ScalarProperty Name="latitudeStation" ColumnName="latitudeStation" />
+                <ScalarProperty Name="longitudeStation" ColumnName="longitudeStation" />
+                <ScalarProperty Name="altitudeStation" ColumnName="altitudeStation" />
+                <ScalarProperty Name="idGlacier" ColumnName="idGlacier" />
+                <ScalarProperty Name="idMeasurementType" ColumnName="idMeasurementType" />
+                <ScalarProperty Name="stateR" ColumnName="stateR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="systemUsers">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.systemUser">
+              <MappingFragment StoreEntitySet="systemUser">
+                <ScalarProperty Name="idSystemUser" ColumnName="idSystemUser" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="passwordU" ColumnName="passwordU" />
+                <ScalarProperty Name="idGender" ColumnName="idGender" />
+                <ScalarProperty Name="idTitle" ColumnName="idTitle" />
+                <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
+                <ScalarProperty Name="idCountry" ColumnName="idCountry" />
+                <ScalarProperty Name="idInstitution" ColumnName="idInstitution" />
+                <ScalarProperty Name="idUserPrivilege" ColumnName="idUserPrivilege" />
+                <ScalarProperty Name="idUserState" ColumnName="idUserState" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="titles">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.title">
+              <MappingFragment StoreEntitySet="title">
+                <ScalarProperty Name="idTitle" ColumnName="idTitle" />
+                <ScalarProperty Name="nameTitle" ColumnName="nameTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userPrivileges">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.userPrivilege">
+              <MappingFragment StoreEntitySet="userPrivilege">
+                <ScalarProperty Name="idUserPrivilege" ColumnName="idUserPrivilege" />
+                <ScalarProperty Name="namePrivilege" ColumnName="namePrivilege" />
+                <ScalarProperty Name="stateR" ColumnName="stateR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userStates">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.userState">
+              <MappingFragment StoreEntitySet="userState">
+                <ScalarProperty Name="idUserState" ColumnName="idUserState" />
+                <ScalarProperty Name="nameState" ColumnName="nameState" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AggregatedCounters">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.AggregatedCounter">
+              <MappingFragment StoreEntitySet="AggregatedCounter">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ExpireAt" ColumnName="ExpireAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Counters">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.Counter">
+              <MappingFragment StoreEntitySet="Counter">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ExpireAt" ColumnName="ExpireAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hashes">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.Hash">
+              <MappingFragment StoreEntitySet="Hash">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Field" ColumnName="Field" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ExpireAt" ColumnName="ExpireAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jobs">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.Job">
+              <MappingFragment StoreEntitySet="Job">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="InvocationData" ColumnName="InvocationData" />
+                <ScalarProperty Name="Arguments" ColumnName="Arguments" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="ExpireAt" ColumnName="ExpireAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobParameters">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.JobParameter">
+              <MappingFragment StoreEntitySet="JobParameter">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobQueues">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.JobQueue">
+              <MappingFragment StoreEntitySet="JobQueue">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="Queue" ColumnName="Queue" />
+                <ScalarProperty Name="FetchedAt" ColumnName="FetchedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lists">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.List">
+              <MappingFragment StoreEntitySet="List">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ExpireAt" ColumnName="ExpireAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schemata">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.Schema">
+              <MappingFragment StoreEntitySet="Schema">
+                <ScalarProperty Name="Version" ColumnName="Version" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Servers">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.Server">
+              <MappingFragment StoreEntitySet="Server">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="LastHeartbeat" ColumnName="LastHeartbeat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sets">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.Set">
+              <MappingFragment StoreEntitySet="Set">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ExpireAt" ColumnName="ExpireAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="DB_LMIGREATICEModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DB_LMIGREATICEModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DB_LMIGREATICEModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DB_LMIGREATICEModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DB_LMIGREATICEModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_LMIGREATICEModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DB_LMIGREATICEModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_LMIGREATICEModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DB_LMIGREATICEModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DB_LMIGREATICEModel.Store.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

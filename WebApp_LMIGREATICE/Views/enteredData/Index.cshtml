@@ -1,0 +1,60 @@
+﻿@model IEnumerable<WebApp_LMIGREATICE.Models.enteredData>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center">List of documents</h2>
+
+<p>
+    @Html.ActionLink("Upload Data", "UploadFile","Asyn",null,new { @class = "btn btn-defualt wine-button"})
+</p>
+<table class="table">
+
+    <thead class="head-table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nameEnteredData)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.startDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.endDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.stateR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dataType.nameDataType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.station.nameStation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.systemUser.firstName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(item.nameEnteredData, "DownloadFile", new { id = item.idEnteredData }, new { @class = "a-wine" })</td>
+                @*<td>@Html.DisplayFor(modelItem => item.nameEnteredData)</td>*@
+                <td>@Html.DisplayFor(modelItem => item.startDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.endDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.stateR)</td>
+                <td>@Html.DisplayFor(modelItem => item.dataType.nameDataType)</td>
+                <td>@Html.DisplayFor(modelItem => item.station.nameStation)</td>
+                <td>@Html.DisplayFor(modelItem => item.systemUser.firstName)</td>
+                <td>
+                    <a href="@Url.Action("GoDown", "enteredData",new { id = item.idEnteredData})" onclick="return confirm('Are you sure you want to delete this?');"><img src="@Url.Content("~/Content/images/trash.png")" style="width:20px;height:auto;"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

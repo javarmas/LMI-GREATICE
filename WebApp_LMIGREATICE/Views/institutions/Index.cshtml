@@ -1,0 +1,37 @@
+﻿@model IEnumerable<WebApp_LMIGREATICE.Models.institution>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center">List of institutions</h2>
+<p>
+    @Html.ActionLink("Add institution", "Create", "institution", new { @class = "btn btn-default wine-button" })
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>@Html.DisplayNameFor(model => model.idInstitution)</th>*@
+            <th>@Html.DisplayNameFor(model => model.nameInstitution)</th>
+            @*<th></th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>@Html.DisplayFor(modelItem => item.idInstitution)</td>*@
+                <td>@Html.ActionLink(item.nameInstitution, "Edit",new { id = item.idInstitution}, new { @class = "a-wine"})</td>
+                @*<td>*@
+                    @*Html.ActionLink("Edit", "Edit", new { id = item.idInstitution }, new { @class = "btn btn-sm a-wine" }) @*|*@
+                    @*@Html.ActionLink("Details", "Details", new { id = item.idMountain }, new { @class = "btn btn-primary" }) |*@
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.idInstitution }, new { @class = "btn btn-primary", @onClick = "return confirm('Are you sure you want to delete this?');" })*@
+                @*</td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

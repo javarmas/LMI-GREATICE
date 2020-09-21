@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f8a5e86987aa43bda0055a8401e6a253" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.country" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.dataType" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.enteredData" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.gender" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.glacier" Width="1.5" PointX="0.75" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.glaciologicalData" Width="1.5" PointX="7.5" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.hydrologicalData" Width="1.5" PointX="7.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.institution" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.location" Width="1.5" PointX="0.75" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.measurementType" Width="1.5" PointX="0.75" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.metadata" Width="1.5" PointX="7.5" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.meteorologicalData" Width="1.5" PointX="7.5" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.mountain" Width="1.5" PointX="1.5" PointY="27.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.projectCountry" Width="1.5" PointX="1.5" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.station" Width="1.5" PointX="3" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.systemUser" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.title" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.userPrivilege" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.userState" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.AggregatedCounter" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.Counter" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.Hash" Width="1.5" PointX="9.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.Job" Width="1.5" PointX="9.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.JobParameter" Width="1.5" PointX="12" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.JobQueue" Width="1.5" PointX="11.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.List" Width="1.5" PointX="11.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.Schema" Width="1.5" PointX="2.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.Server" Width="1.5" PointX="4.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.Set" Width="1.5" PointX="13.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_LMIGREATICEModel.State" Width="1.5" PointX="12" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="DB_LMIGREATICEModel.FK__systemUse__idCou__336AA144" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_LMIGREATICEModel.FK__enteredDa__idDat__56B3DD81" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_LMIGREATICEModel.FK__enteredDa__idSta__57A801BA" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_LMIGREATICEModel.FK__enteredDa__idSys__589C25F3" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_LMIGREATICEModel.FK__glaciolog__idEnt__61316BF4" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_LMIGREATICEModel.FK__hydrologi__idEnt__7DCDAAA2" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_LMIGREATICEModel.FK__metadata__idEnte__5E54FF49" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_LMIGREATICEModel.FK__meteorolo__idEnt__5B78929E" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_LMIGREATICEModel.FK__systemUse__idGen__318258D2" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_LMIGREATICEModel.FK__glacier__idMount__42E1EEFE" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_LMIGREATICEModel.FK__station__idGlaci__5E8A0973" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_LMIGREATICEModel.FK__systemUse__idIns__345EC57D" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_LMIGREATICEModel.FK__station__idLocat__5D95E53A" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_LMIGREATICEModel.FK__station__idMeasu__5F7E2DAC" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_LMIGREATICEModel.FK__mountain__stateR__3F115E1A" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_LMIGREATICEModel.FK__systemUse__idTit__32767D0B" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_LMIGREATICEModel.FK__systemUse__idUse__3552E9B6" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_LMIGREATICEModel.FK__systemUse__idUse__36470DEF" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_LMIGREATICEModel.FK_HangFire_JobParameter_Job" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_LMIGREATICEModel.FK_HangFire_State_Job" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,44 @@
+﻿@model WebApp_LMIGREATICE.Models.glacier
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="text-center">Glacier details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nameGlacier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nameGlacier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mountain.nameMountain)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mountain.nameMountain)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stateR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stateR)
+        </dd>
+    </dl>
+</div>
+<p class="text-center">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idGlacier }, new { @class = "btn btn-default wine-button" }) |
+    @Html.ActionLink("Back to List", "Index",null, new { @class = "btn btn-default wine-border-button" })
+</p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

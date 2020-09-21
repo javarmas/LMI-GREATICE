@@ -1,0 +1,101 @@
+﻿@model WebApp_LMIGREATICE.Models.enteredData
+
+@{
+    ViewBag.Title = "UploadFile";
+}
+<h2 class="text-center">Upload a CSV file</h2>
+
+@using (Html.BeginForm("UploadFile", "Asyn", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <hr />
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.startDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.endDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.endDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.idDataType, "Data Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.idDataType, ViewBag.dataTypes as SelectList, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.idDataType, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.station.idMeasurementType, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("idMeasurementType", ViewBag.measurementTypes as SelectList, "Select a measurment type", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.station.measurementType, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Station", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.idStation, new SelectList(""), "--Select Station--", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessage("", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="text-center">
+                    <input type="file" name="fileToCheck" class="btn btn-default wine-button" style="background-color:#000" /><br /> <br />
+                    <input type="submit" value="Upload" class="btn btn-default wine-button" />
+
+
+                    @if (Session["idUserPrivilege"] != null && Session["idUserPrivilege"].ToString() != "")
+                    {
+                        if (((int)Session["idUserPrivilege"]) == 1)
+                        {
+                            @Html.ActionLink("Back to List", "Index", "enteredData", null, new { @class = "btn btn-default wine-border-button" })
+                        }
+                    }
+                    @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default wine-border-button" })*@
+                </div><br />
+                <p>
+                    <b>
+                        Note: Depending of the measurement types, there are many formats that the documents must comply to be uploaded to the system. If the
+                        documents do not comply the specified format, they will not be uploaded.  Also, the documents must have at least one row of records.
+                        For checking the specified formats please visit
+                        <a href="https://drive.google.com/open?id=1bKhymD_l8851kRN9lcUpPfzLkKjmWiLQ">this link</a>
+                    </b>
+                </p>
+                
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#idMeasurementType').on('change', function () {
+                // alert($("#idMeasurementType").val());
+                $.get("/enteredData/GetStationList", { idMType: $("#idMeasurementType").val() }, function (data) {
+                    $("#idStation").empty();
+                    $.each(data, function (index, row) {
+                        $("#idStation").append("<option value='" + row.idStation + "'>" + row.nameStation + "</option>")
+                    });
+                });
+            })
+        });
+    </script>
+}

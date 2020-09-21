@@ -1,0 +1,310 @@
+﻿@model WebApp_LMIGREATICE.Models.Extension.EnteredDataExt
+@{
+    Layout = "~/Views/Shared/_Banner_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    <h1 class="text-center">Search Data</h1>
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            <h2 class="text-center">Filters</h2>
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @Html.Label("Country", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("idProjectCountry", ViewBag.projectCountries as SelectList,"--Select country--", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.station.glacier.mountain.projectCountry, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" id="groupMountain">
+                    @Html.Label("Mountain", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("idMountain", Enumerable.Empty<SelectListItem>(), "--Select mountain--", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessage("", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" id="groupGlacier">
+                    @Html.Label("Glacier", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("idGlacier", Enumerable.Empty<SelectListItem>(), "--Select glacier--", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.station.idGlacier, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" id="groupDataType">
+                    @Html.Label("Data Type", "Data Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("idDataType", ViewBag.dataTypes as SelectList, "--Select Data Type--", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.idDataType, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" id="groupMeasurementType">
+                    @Html.Label("Measurement Type", "Measurement Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("idMeasurementType", ViewBag.measurementTypes as SelectList, "--Select Measurement Type--", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.station.measurementType, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" id="groupStation">
+                    @Html.LabelFor(model => model.idStation, "Station", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @if (ViewBag.stations != null)
+                        {
+                            @Html.DropDownListFor(model => model.idStation, ViewBag.stations as SelectList, "--Select Station--", htmlAttributes: new { @class = "form-control" })
+                        }
+                        @Html.ValidationMessageFor(model => model.idStation, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div id="group-extra">
+                    <div class="form-group">
+                        @Html.Label("Variable", "Variable", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.variable, ViewBag.variable as SelectList, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+
+ <div class="form-group" id="yearGroup">
+   @Html.Label("Year", "Year", htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.DropDownListFor(model => model.year, ViewBag.years as SelectList, htmlAttributes: new { @class = "form-control" })
+      </div>
+ </div>
+</div>
+
+
+                <div class="form-group" id="docGroup">
+                    @Html.Label("Document", "Document", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @if (ViewBag.docs != null)
+                        {
+                            @Html.DropDownListFor(model => model.idEnteredData, ViewBag.docs as SelectList, htmlAttributes: new { @class = "form-control" })
+
+                        }
+                    </div>
+                </div>
+
+                <div class="form-group" id="altitudinalGroup">
+                    @Html.Label("Altitudinal Bar", "Altitudinal Bar", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.altitudinalBar, ViewBag.altitudinalBar as SelectList, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+                @*</div>*@
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Search" class="btn btn-default wine-button" />
+                        @Html.ActionLink("Clear", "Search", null, new { @class = "btn btn-default wine-button" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            <div id="map" style="height:350px;width:650px"></div>
+        </div>
+    </div>
+
+    <br />
+    <div id="docDetails">
+        <h3 class="text-center" id="lblStatioName"></h3>
+        <br />
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-4" style="font-weight: bold;">Name</div><div id="name" class="col-sm-8"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4" style="font-weight: bold;">Latitude</div><div id="latitudee" class="col-sm-8"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4" style="font-weight: bold;">Longitude</div><div id="longitudee" class="col-sm-8"></div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-4" style="font-weight: bold;">Altitude</div><div id="altitude" class="col-sm-8"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4" style="font-weight: bold;">Glacier</div><div id="glacier" class="col-sm-8"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4" style="font-weight: bold;">Measurement Type</div><div id="measure" class="col-sm-8"></div>
+                </div>
+            </div>
+        </div>
+        <br /><br />
+        <table class="table">
+            <thead class="head-table">
+                <tr>
+                    <th>Name</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                </tr>
+            </thead>
+
+            <tbody id="documents"></tbody>
+        </table>
+    </div>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(function () {
+                $('#idProjectCountry').val('--Select country--');
+                $('#groupMountain').hide();
+                $('#groupGlacier').hide();
+                $('#groupDataType').hide();
+                $('#groupMeasurementType').hide();
+                $('#groupStation').hide();
+                $('#docGroup').hide();
+                $('#docDetails').hide();
+                $('#group-extra').hide();
+                $('#altitudinalGroup').hide();
+                $('#yearGroup').hide();
+
+                setTimeout(function () {
+                    $('#messageNotification').fadeOut().empty();
+                    $('#messageError').fadeOut().empty();
+                    $('#message').fadeOut().empty();
+                }, 5000);
+
+                var mymap = L.map('map').setView([-0.47, -78.15], 15);
+                L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiamFhbjkwIiwiYSI6ImNqczYyeTBwZzBod2E0YW1zNWxlZDUxeWkifQ.73osagGl_LLhZT7M1aGvTA', {
+                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                    maxZoom: 18,
+                    id: 'mapbox.streets',
+                    accessToken: 'pk.eyJ1IjoiamFhbjkwIiwiYSI6ImNqczYyeTBwZzBod2E0YW1zNWxlZDUxeWkifQ.73osagGl_LLhZT7M1aGvTA'
+                }).addTo(mymap);
+
+                var jsonList = @Html.Raw(Json.Encode(ViewBag.fullStation));
+                for (i = 0; i < jsonList.length; i++) {
+                    var item = jsonList[i];
+                    var marker = L.marker([item.latitudeStation, item.longitudeStation]).on('click', onClicMarker).on('mouseover', onMouseMarker).on('mouseout', onMouseOut);
+                    marker.key = item;
+                    marker.bindPopup(item.nameStation);
+                    marker.addTo(mymap);
+                }
+ 
+            });
+
+            function onMouseMarker(e) {
+                this.openPopup();
+            }
+
+            function onMouseOut(e) {
+                this.closePopup();
+            }
+
+            function onClicMarker(e) {
+                $('#docDetails').show();
+                this.closePopup();
+                lblStatioName.innerText = this.key.nameStation;
+                $.get("/enteredData/GetDocsByStation", { idStation: this.key.idStation }, function (data) {
+                    document.getElementById("name").innerHTML = data["nameStation"];
+                    document.getElementById("latitudee").innerHTML = data["latitudeStation"];
+                    document.getElementById("longitudee").innerHTML = data["longitudeStation"];
+                    document.getElementById("altitude").innerHTML = data["altitudeStation"];
+                    document.getElementById("glacier").innerHTML = data["glacier"]["nameGlacier"];
+                    document.getElementById("measure").innerHTML = data["measurementType"]["nameMT"];
+                    //var meta1 = "<div class=\x22row\x22><div class=\x22sm-4\x22>" + Nombre + "</div> <div class=\x22sm-8\x22>" + data["nameStation"] + "</div></div>";
+                    //var meta2 = data["altitudeStation"] + "<br />" + data["measurementType"]+ "<br />" + data["glacier"]["nameGlacier"]
+                    //$("#meta1").html(meta1);
+                    //$("#meta2").html(meta2);
+                    var item = "";
+                    $.each(data["docs"], function (index, row) {
+                        //item += "<tr><td><a href =\x22/Item/Login/" + row.nameStation + "\x22>" + row.longitudeStation + "</a></td><td>" + row.latitudeStation + "</td><td>" + row.altitudeStation + "</td></tr>";
+                        item += "<tr><td><a href =\x22/enteredData/DownloadFile/" + row.idDoc + "\x22>" + row.name + "</a></td><td>" + row.startDate + "</td><td>" + row.endDate + "</td></tr>";
+                    });
+                    $("#documents").html(item);
+                });
+            }
+
+            $('#idProjectCountry').bind('change', 'select', function () {
+                $.get("/enteredData/GetMountainList", { idCountrySelec: $("#idProjectCountry").val() }, function (data) {
+                    $("#idMountain").empty();
+                    $.each(data, function (index, row) {
+                        $("#idMountain").append("<option value='" + row.idMountain + "'>" + row.nameMountain + "</option>")
+                    });
+                    $("#idMountain").prepend("<option value='' selected='selected'>--Select mountain--</option>");
+                    $('#groupMountain').show();
+                    $('#groupGlacier').hide();
+                    $('#groupDataType').hide();
+                    $('#groupMeasurementType').hide();
+                    $('#groupStation').hide();
+                    $('#yearGroup').hide();
+                    $('#idMeasurementType').val(0);
+                    $('#idDataType').val(0)
+                });
+            });
+
+            $('#idMountain').bind('change', 'select', function () {
+                $.get("/enteredData/GetGlacierList", { idMount: $("#idMountain").val() }, function (data) {
+                    $("#idGlacier").empty();
+                    $.each(data, function (index, row) {
+                        $("#idGlacier").append("<option value='" + row.idGlacier + "'>" + row.nameGlacier + "</option>")
+                    });
+                    $("#idGlacier").prepend("<option value='' selected='selected'>--Select mountain--</option>");
+                    $('#groupGlacier').show();
+                    $('#groupDataType').hide();
+                    $('#groupMeasurementType').hide();
+                    $('#groupStation').hide();
+                    $('#yearGroup').hide();
+                });
+            });
+
+            $('#idGlacier').bind('change', 'select', function () {
+                $('#groupDataType').show();
+                $('#groupMeasurementType').hide();
+                $('#groupStation').hide();
+                $('#yearGroup').hide();
+            });
+
+            $('#idDataType').bind('change', 'select', function () {
+                $('#groupMeasurementType').show();
+                $('#groupStation').hide();
+                $('#yearGroup').hide();
+            });
+
+            $('#idMeasurementType').bind('change', 'select', function () {
+                $.get("/enteredData/GetStationSearchList", { idGlacier: $("#idGlacier").val(), idMType: $("#idMeasurementType").val() }, function (data) {
+                    $("#idStation").empty();
+                    $.each(data, function (index, row) {
+                        $("#idStation").append("<option value='" + row.idStation + "'>" + row.nameStation + "</option>")
+                    });
+                });
+
+                $.get("/enteredData/GetFileStrcutureByidMeasurementType", { idMeasurmentType: $("#idMeasurementType").val() }, function (data) {
+                    $("#variable").empty();
+                    $.each(data, function (index, row) {
+                        $("#variable").append("<option value='" + row.key + "'>" + row.rowName + "</option>")
+                    });
+                    if ($('#idMeasurementType').val() == 2) {
+                        $('#altitudinalGroup').show();
+                        $('#docGroup').show();
+                        $('#yearGroup').hide();
+                    }
+                    else {
+                        $('#altitudinalGroup').hide();
+                        $('#yearGroup').show();
+                        $('#docGroup').hide();
+                    }
+                });
+                $('#groupStation').show();
+                $('#group-extra').show();
+            });
+
+        });
+
+    </script>
+}
